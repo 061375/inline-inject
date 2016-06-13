@@ -1,0 +1,30 @@
+/* line 2, ../components/sass/style.scss */
+.container {
+  width: 650px; }
+  /* line 4, ../components/sass/style.scss */
+  .container td.blue {
+    background: #0000ff; }
+    /* line 6, ../components/sass/style.scss */
+    .container td.blue p {
+      color: yellow; }
+  /* line 10, ../components/sass/style.scss */
+  .container td.yellow {
+    background: #ffff00; }
+    /* line 12, ../components/sass/style.scss */
+    .container td.yellow p {
+      color: blue; }
+  /* line 16, ../components/sass/style.scss */
+  .container td.red {
+    background: #ff0000; }
+    /* line 18, ../components/sass/style.scss */
+    .container td.red a {
+      color: cyan; }
+  /* line 22, ../components/sass/style.scss */
+  .container td.orange {
+    background: #80ff00; }
+    /* line 24, ../components/sass/style.scss */
+    .container td.orange a {
+      color: #7f00ff; }
+  /* line 28, ../components/sass/style.scss */
+  .container h2, .container p, .container a {
+    font-family: Arial, sans-serif; }

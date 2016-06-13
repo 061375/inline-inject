@@ -1,1 +1,31 @@
-// 
+//
+.container {
+    width: 650px;
+    td.blue {
+        background: #0000ff;
+        p {
+            color: complement(#0000ff);
+        }
+    }
+    td.yellow {
+        background: #ffff00;
+        p {
+            color: complement(#ffff00);
+        }
+    }
+    td.red {
+        background: #ff0000;
+        a {
+            color: complement(#ff0000);
+        }
+    }
+    td.orange {
+        background: #80ff00;
+        a {
+            color: complement(#80ff00);
+        }
+    }
+    h2, p, a {
+        font-family: Arial, sans-serif;            
+    }
+}

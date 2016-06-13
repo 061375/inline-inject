@@ -1,36 +1,43 @@
 
-// create button here
-
-// loop items
-// non-jquery version
-    var items = startElem.getElementsByTagName("*");
-    for (var i = items.length; i--;) {
-    }
-// jquery version
-    var b = document.createElement('button');
-    $(b).attr('id','createEmailBuilderButtonxyzpdq');
-    $(b).css('z-index','9999');
-    $(b).html('Create Inline');
-    $('body *').each( function(){
-        $(this).css(css($(this)));    
-    });
+window.onload = function(){
+    // loop items
+        var b = document.getElementsByTagName("body")[0].getElementsByTagName("*");
+        console.log(b);
+        for (var i = b.length; i--;) {
+            console.log(b[i]);
+            b[i].setAttribute("style",css(b[i]));
+        }
+    // create button here
+        var b = document.createElement('button');
+        b.id = 'createEmailBuilderButtonxyzpdq';
+        b.style.zIndex = '9999';
+        b.innerHTML = 'Create Inline';
+        b.addEventListener("click", displayDate);
     
-    $('textarea').val($('body').html());
-// create textarea
-
+    // create textarea
+    
+}
 // append data to textarea
-
 function css(a) {
+    var re = '';
     var sheets = document.styleSheets, o = {};
     for (var i in sheets) {
         var rules = sheets[i].rules || sheets[i].cssRules;
         for (var r in rules) {
-            if (a.is(rules[r].selectorText)) {
-                o = $.extend(o, css2json(rules[r].style), css2json(a.attr('style')));
+            if(typeof rules[r].selectorText !== 'undefined') {
+                /*
+                var o = css2json(rules[r].style);
+                for(var i in o) {
+                    re += i+":"+o[i];   
+                }*/
+                console.log(rules[r].selectorText);
             }
+            //if (a.is(rules[r].selectorText)) {
+               // o = $.extend(o, css2json(rules[r].style), css2json(a.attr('style')));
+            //}
         }
     }
-    return o;
+    return re;
 }
 function css2json(css) {
     var s = {};
