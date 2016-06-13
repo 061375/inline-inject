@@ -4,7 +4,7 @@ A bookmarklet to grab CSS from stylesheets and inject into HTML as inline for en
 ## About
 One of my jobs is to create enewsletters to be released using Constant Contact. While templates are provided they often are limited and clients want their design to reflect their vision. Not to mention there are tables injected further limiting the capability and control over the email, so I often opt to simply write the newsletter from the ground-up in HTML. Because email clients (and their quirks) vary on an even broader scale than browsers do (even today) and because stylesheets are often ignored. I always over code them with inline styles and old school HTML.
 
-In order to acheive this easily I used to create a stylesheet that would then be parsed and injected using PHP. This was a bit clunky as I would always have to add variables to be injected. example: `<&gt;p style="<?=$p?>"&lt;>lorem ipsum<&gt;/p&lt;>`.
+In order to acheive this easily I used to create a stylesheet that would then be parsed and injected using PHP. This was a bit clunky as I would always have to add variables to be injected. example: `<p style="<?=$p?>">lorem ipsum</p>`.
 
 It worked, but I wanted somethign faster and more reliable.
 
