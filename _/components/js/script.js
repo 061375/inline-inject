@@ -1,22 +1,35 @@
-
-window.onload = function(){
+/**
+ * Email CSS to Inline Conversion Tool
+ * @description -
+ *  When building an email newsletter its always a good idea to use inline styles verus a stylesheet
+ *  as many email clients still don't use stylesheets correctly
+ *
+ *  This utility allows an HTML document in devleopment with a stylesheet to be converted to
+ *  a fully inline document that should at least make development of an email faster.
+ *
+ *  The tool loops each node in the document and gets its calculated CSS then appends that as an in-line style
+ *
+ *  Then the resulting HTML is added to a textarea to be copied and pasted
+ *  */
+var newbody, body;
+// uncomment the window.onload to test as a webpage
+//window.onload = function(){
     // loop items
-        var b = document.getElementsByTagName("body")[0].getElementsByTagName("*");
-        console.log(b);
-        for (var i = b.length; i--;) {
-            console.log(b[i]);
-            b[i].setAttribute("style",css(b[i]));
+        body = document.getElementsByTagName("body")[0].getElementsByTagName("*");
+        for (var i = body.length; i--;) {
+            css(body[i]);
         }
-    // create button here
-        var b = document.createElement('button');
-        b.id = 'createEmailBuilderButtonxyzpdq';
+    // get updated HTML
+        newbody = document.getElementsByTagName("body")[0].innerHTML;  
+        var b = document.createElement('textarea');
         b.style.zIndex = '9999';
-        b.innerHTML = 'Create Inline';
-        b.addEventListener("click", displayDate);
-    
-    // create textarea
-    
-}
+        b.style.position = 'absolute';
+        b.style.top = "0px";
+        b.style.left = "0px";
+        b.style.width = "1000px";
+        b.style.height = "1000px";
+        b.innerHTML = newbody;
+        body[0].appendChild(b);
 // append data to textarea
 function css(a) {
     var re = '';
@@ -25,35 +38,21 @@ function css(a) {
         var rules = sheets[i].rules || sheets[i].cssRules;
         for (var r in rules) {
             if(typeof rules[r].selectorText !== 'undefined') {
-                /*
-                var o = css2json(rules[r].style);
-                for(var i in o) {
-                    re += i+":"+o[i];   
-                }*/
-                console.log(rules[r].selectorText);
+                var n = document.querySelectorAll(rules[r].selectorText);
+                if(n.length > 0) {
+                    for(var x =0; x<n.length; x++)
+                    {
+                        if(n[x].isSameNode(a)) {
+                            var re = /{(.*)}/;
+                            var m = rules[r].cssText.match(re);
+                            if (m != null) {
+                                a.setAttribute("style",m[0].replace(re, '$1').trim());
+                            }
+                        }
+                    }
+                }
             }
-            //if (a.is(rules[r].selectorText)) {
-               // o = $.extend(o, css2json(rules[r].style), css2json(a.attr('style')));
-            //}
         }
     }
     return re;
-}
-function css2json(css) {
-    var s = {};
-    if (!css) return s;
-    if (css instanceof CSSStyleDeclaration) {
-        for (var i in css) {
-            if ((css[i]).toLowerCase) {
-                s[(css[i]).toLowerCase()] = (css[css[i]]);
-            }
-        }
-    } else if (typeof css == "string") {
-        css = css.split("; ");
-        for (var i in css) {
-            var l = css[i].split(": ");
-            s[l[0].toLowerCase()] = (l[1]);
-        }
-    }
-    return s;
 }
