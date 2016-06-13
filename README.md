@@ -21,4 +21,3 @@ Copy and paste the code.
 
 NOTE: This probably works in other browsers but, there is no real need to support them.
 
-### 
