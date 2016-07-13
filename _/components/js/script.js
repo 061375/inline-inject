@@ -20,7 +20,11 @@ var newbody, body;
             css(body[i]);
         }
     // get updated HTML
-        newbody = document.getElementsByTagName("body")[0].innerHTML;  
+        newbody = document.getElementsByTagName("body")[0].innerHTML;
+        newbody = newbody.replace(/\t/g,' ');
+        newbody = newbody.replace(/\r/g,' ');
+        newbody = newbody.replace(/\n/g,' ');
+        newbody = newbody.replace(/\s+/g,' ');
         var b = document.createElement('textarea');
         b.style.zIndex = '9999';
         b.style.position = 'absolute';
