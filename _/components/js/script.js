@@ -13,9 +13,9 @@
  *  */
 var newbody, body, l;
 // uncomment the window.onload to test as a webpage
-//window.onload = function(){
+window.onload = function(){
     // get all body elements
-    body = document.getElementsByTagName("body")[0].getElementsByTagName("*");
+    body = document.getElementsByTagName("body")[0].getElementsByTagName("*"); 
     
     // prepare the "Please Wait" message
     var f = document.createElement('div');
@@ -53,6 +53,8 @@ var newbody, body, l;
         // remove any style sheets or scripts as we won't be needing them
             document.getElementsByTagName("link").remove();
             document.getElementsByTagName("script").remove();
+            document.getElementsByTagName("style").remove();
+            document.getElementsByTagName("link").remove();
         // remove the loader
             document.getElementById("emailcssbookmarklet").remove();
         // get updated HTML
@@ -70,10 +72,10 @@ var newbody, body, l;
                 b.style.left = "0px";
                 b.style.width = "1000px";
                 b.style.height = "1000px";
-                b.innerHTML = newbody;
+                b.innerHTML = '<html>'+newbody+'</html>';
             body[0].appendChild(b);
     },1000);
-//}
+}
 // append data to textarea
 function css(a) {
     var re = '';
@@ -90,7 +92,13 @@ function css(a) {
                             var re = /{(.*)}/;
                             var m = rules[r].cssText.match(re);
                             if (m != null) {
-                                a.setAttribute("style",m[0].replace(re, '$1').trim());
+                                var p = a.getAttribute("style");
+                                if (null !== p) {
+                                    p += m[0].replace(re, '$1').trim();
+                                }else{
+                                    p = m[0].replace(re, '$1').trim();
+                                }
+                                a.setAttribute("style",p);
                             }
                         }
                     }
